@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'com.example.jetpackcomposenoteapp'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.jetpackcomposenoteapp"
         minSdk 29
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -50,8 +50,6 @@ android {
 
 dependencies {
 
-    def room_version = "2.5.2"
-
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.8.0')
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
@@ -74,14 +72,19 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.44"
     kapt "com.google.dagger:hilt-compiler:2.44"
 
-    // Room database
-    implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+
+    // Room library
+    def room_version = "2.5.2"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation "androidx.room:room-ktx:2.5.2"
+
+
 
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
+    // navigation Library
     def nav_version = "2.7.0"
-
     implementation "androidx.navigation:navigation-compose:$nav_version"
 }

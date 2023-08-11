@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.jetpackcomposenoteapp.util.Constants.LIST_ARGUMENT_KEY
 import com.example.jetpackcomposenoteapp.util.Constants.LIST_SCREEN
+import com.example.jetpackcomposenoteapp.view.screens.ListScreen
 
 fun NavGraphBuilder.listComposable(
     navigateToTaskScreen: (Int) -> Unit
@@ -16,6 +17,7 @@ fun NavGraphBuilder.listComposable(
             type = NavType.StringType
         })
     ) {
+        ListScreen(navigateToTaskScreen = navigateToTaskScreen)
 
     }
 }
