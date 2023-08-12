@@ -7,9 +7,11 @@ import androidx.navigation.navArgument
 import com.example.jetpackcomposenoteapp.util.Constants.LIST_ARGUMENT_KEY
 import com.example.jetpackcomposenoteapp.util.Constants.LIST_SCREEN
 import com.example.jetpackcomposenoteapp.view.screens.ListScreen
+import com.example.jetpackcomposenoteapp.viewmodels.SharedViewModel
 
 fun NavGraphBuilder.listComposable(
-    navigateToTaskScreen: (taskId: Int) -> Unit
+    navigateToTaskScreen: (taskId: Int) -> Unit,
+    sharedViewModel: SharedViewModel
 ) {
     composable(
         route = LIST_SCREEN,
@@ -17,7 +19,10 @@ fun NavGraphBuilder.listComposable(
             type = NavType.StringType
         })
     ) {
-        ListScreen(navigateToTaskScreen = navigateToTaskScreen)
+        ListScreen(
+            navigateToTaskScreen = navigateToTaskScreen,
+            sharedViewModel = sharedViewModel
+        )
 
     }
 }

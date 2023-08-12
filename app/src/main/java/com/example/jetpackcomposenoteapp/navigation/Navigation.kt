@@ -7,10 +7,12 @@ import androidx.navigation.compose.NavHost
 import com.example.jetpackcomposenoteapp.navigation.destinations.listComposable
 import com.example.jetpackcomposenoteapp.navigation.destinations.taskComposable
 import com.example.jetpackcomposenoteapp.util.Constants.LIST_SCREEN
+import com.example.jetpackcomposenoteapp.viewmodels.SharedViewModel
 
 @Composable
 fun SetupNavigation(
-    navController: NavHostController
+    navController: NavHostController,
+    sharedViewModel: SharedViewModel
 ) {
 
     val screen = remember(navController) {
@@ -22,7 +24,8 @@ fun SetupNavigation(
         startDestination = LIST_SCREEN
     ) {
         listComposable(
-            navigateToTaskScreen = screen.task
+            navigateToTaskScreen = screen.task,
+            sharedViewModel = sharedViewModel
         )
 
         taskComposable(
