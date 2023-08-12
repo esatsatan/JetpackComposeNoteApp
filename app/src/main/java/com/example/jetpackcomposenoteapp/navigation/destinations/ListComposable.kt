@@ -9,7 +9,7 @@ import com.example.jetpackcomposenoteapp.util.Constants.LIST_SCREEN
 import com.example.jetpackcomposenoteapp.view.screens.ListScreen
 
 fun NavGraphBuilder.listComposable(
-    navigateToTaskScreen: (Int) -> Unit
+    navigateToTaskScreen: (taskId: Int) -> Unit
 ) {
     composable(
         route = LIST_SCREEN,
