@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposenoteapp.R
 import com.example.jetpackcomposenoteapp.data.models.Priority
 import com.example.jetpackcomposenoteapp.util.SearchAppBarState
+import com.example.jetpackcomposenoteapp.util.TrailingIconState
 import com.example.jetpackcomposenoteapp.viewmodels.SharedViewModel
 
 @Composable
@@ -225,10 +226,15 @@ fun SearchAppBar(
     onCloseClicked: () -> Unit,
     onSearchClicked: (String) -> Unit
 ) {
+
+    var trailingIconState by remember {
+        mutableStateOf(TrailingIconState.READY_TO_CLOSE)
+    }
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp),
+            .height(63.dp),
         color = Color.Blue
     ) {
 
@@ -261,7 +267,21 @@ fun SearchAppBar(
             trailingIcon = {
                 IconButton(
                     onClick = {
-                        onCloseClicked()
+                       when(trailingIconState) {
+                           TrailingIconState.READY_TO_DELETE -> {
+                                onTextChange("")
+                               trailingIconState = TrailingIconState.READY_TO_CLOSE
+                           }
+                           TrailingIconState.READY_TO_CLOSE -> {
+                               if (text.isNotEmpty()) {
+                                   onTextChange("")
+                               } else {
+                                   onCloseClicked()
+                                   trailingIconState = TrailingIconState.READY_TO_DELETE
+                               }
+                           }
+
+                       }
                     }
                 ) {
                     Icon(
