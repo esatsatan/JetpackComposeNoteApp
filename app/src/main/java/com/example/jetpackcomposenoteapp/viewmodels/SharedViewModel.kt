@@ -1,5 +1,6 @@
 package com.example.jetpackcomposenoteapp.viewmodels
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -30,6 +31,7 @@ class SharedViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getAllTasks.collect {
                 _allTasks.value = it
+                Log.d("veritabanından al","veriler veritabanından alındı")
             }
         }
     }
