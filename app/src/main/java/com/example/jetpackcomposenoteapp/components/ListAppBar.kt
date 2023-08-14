@@ -89,7 +89,7 @@ fun DefaultListAppBar(
     TopAppBar(
         colors = TopAppBarDefaults.smallTopAppBarColors(containerColor = Color.Blue),
         title = {
-            Text(text = "Tasks", color = Color.White)
+            Text(text = "Notlar", color = Color.White)
         },
         actions = {
             ListAppBarActions(
@@ -203,7 +203,7 @@ fun DeleteAllAction(
             onDismissRequest = { expanded = false }
         ) {
             DropdownMenuItem(
-                text = { Text(text = "Delete All", modifier = Modifier.padding(start = 16.dp)) },
+                text = { Text(text = "Tümünü Sil", modifier = Modifier.padding(start = 16.dp)) },
                 onClick = {
                     expanded = false
                     onDeleteClicked()

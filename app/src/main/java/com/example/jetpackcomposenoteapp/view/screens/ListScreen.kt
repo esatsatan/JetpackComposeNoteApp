@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetpackcomposenoteapp.components.ListAppBar
+import com.example.jetpackcomposenoteapp.components.ListContent
 import com.example.jetpackcomposenoteapp.util.SearchAppBarState
 import com.example.jetpackcomposenoteapp.viewmodels.SharedViewModel
 
@@ -39,7 +40,9 @@ fun ListScreen(
         floatingActionButton = {
             ListFab(onFabClicked = navigateToTaskScreen)
         },
-        content = {},
+        content = {
+            ListContent()
+        },
     )
 
 }
