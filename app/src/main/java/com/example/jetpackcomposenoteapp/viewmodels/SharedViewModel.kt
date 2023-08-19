@@ -12,6 +12,7 @@ import com.example.jetpackcomposenoteapp.util.SearchAppBarState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -44,9 +45,22 @@ class SharedViewModel @Inject constructor(
             _allTasks.value = RequestState.Error(e)
         }
 
-
-
     }
+
+    private val _selectedTask: MutableStateFlow<ToDoTask?> = MutableStateFlow(null)
+    val selectedTask: StateFlow<ToDoTask?> = _selectedTask
+
+    fun getSelectedTask(taskId: Int) {
+        viewModelScope.launch {
+            repository.getSelectedTask(taskId = taskId).collect { task ->
+                _selectedTask.value = task
+            }
+        }
+    }
+
+
+
+
 
 
 
