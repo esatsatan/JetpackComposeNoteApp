@@ -33,7 +33,8 @@ fun TaskContent(
     Column(modifier = Modifier
         .fillMaxSize()
         .background(color = Color.White)
-        .padding(12.dp)
+        .padding(start = 12.dp, top = 70.dp,12.dp, bottom = 12.dp)
+
     ) {
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -41,7 +42,7 @@ fun TaskContent(
             onValueChange = { onTitleChange(it) },
             label = { Text(text = "Başlık")},
             singleLine = true,
-            textStyle = MaterialTheme.typography.bodySmall
+            textStyle = MaterialTheme.typography.bodyMedium
         )
 
         Divider(
@@ -58,7 +59,7 @@ fun TaskContent(
             value = description,
             onValueChange = {onDescriptionChange(it)},
             label = {
-                Text(text = "Açıklama")
+                Text(text = "Not")
             },
             textStyle = MaterialTheme.typography.bodySmall
         )
