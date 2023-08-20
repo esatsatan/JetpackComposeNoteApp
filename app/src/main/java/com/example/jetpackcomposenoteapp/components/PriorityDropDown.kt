@@ -77,6 +77,8 @@ fun PriorityDropDown(
         }
 
         DropdownMenu(
+            modifier = Modifier
+                .fillMaxWidth(fraction = 0.94f),
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
@@ -115,13 +117,4 @@ fun PriorityDropDown(
         }
     }
 
-}
-
-@Composable
-@Preview
-fun preview() {
-    PriorityDropDown(
-        priority = Priority.LOW,
-        onPrioritySelected = {}
-    )
 }
