@@ -153,7 +153,7 @@ fun BackAction(
 fun AddAction(
     onAddClicked: (Action) -> Unit
 ) {
-    IconButton(onClick = { onAddClicked(Action.NO_ACTION) }) {
+    IconButton(onClick = { onAddClicked(Action.ADD) }) {
         Icon(
             imageVector = Icons.Filled.Check,
             contentDescription = "Add Task",
