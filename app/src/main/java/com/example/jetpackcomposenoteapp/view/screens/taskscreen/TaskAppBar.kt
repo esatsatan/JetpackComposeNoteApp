@@ -13,9 +13,14 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetpackcomposenoteapp.components.DisplayAlertDialog
 import com.example.jetpackcomposenoteapp.data.models.Priority
 import com.example.jetpackcomposenoteapp.data.models.ToDoTask
 import com.example.jetpackcomposenoteapp.util.Action
@@ -83,14 +88,42 @@ fun ExistingTaskAppBar(
             )
         },
         actions = {
-            DeleteAction(onDeleteClicked = navigateToListScreen)
-            UpdateAction(onUpdateClicked = navigateToListScreen)
+            ExistingTaskAppBarAction(
+                selectedTask,
+                navigateToListScreen
+            )
         },
         colors = TopAppBarDefaults.largeTopAppBarColors(
             containerColor = Color.Blue
         )
 
     )
+}
+
+@Composable
+fun ExistingTaskAppBarAction(
+    selectedTask: ToDoTask,
+    navigateToListScreen: (Action) -> Unit
+) {
+
+    var openDialog by remember {
+        mutableStateOf(false)
+    }
+
+    DisplayAlertDialog(
+        title = "${selectedTask.title} sil?" ,
+        message = "${selectedTask.title} silmek istediğine emin misin ?" ,
+        openDialog = openDialog,
+        closeDialog = { openDialog = false },
+        onYesClicked = {
+            navigateToListScreen(Action.DELETE)
+        }
+    )
+
+    DeleteAction(onDeleteClicked = {
+        openDialog = true
+    })
+    UpdateAction(onUpdateClicked = navigateToListScreen)
 }
 
 @Composable
@@ -109,9 +142,9 @@ fun CloseAction(
 
 @Composable
 fun DeleteAction(
-    onDeleteClicked: (Action) -> Unit
+    onDeleteClicked: () -> Unit
 ) {
-    IconButton(onClick = { onDeleteClicked(Action.DELETE) }) {
+    IconButton(onClick = { onDeleteClicked() }) {
         Icon(
             imageVector = Icons.Filled.Delete,
             contentDescription = "Delete",
